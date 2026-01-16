@@ -1,0 +1,18 @@
+/raw
+/validated
+/prepared
+/features
+/warehouse
+# Python venv
+.venv/
+
+# Data folders (tracked by DVC, not Git)
+data/raw/
+data/validated/
+data/prepared/
+data/features/
+data/warehouse/
+
+# Logs and reports
+logs/
+data/reports/

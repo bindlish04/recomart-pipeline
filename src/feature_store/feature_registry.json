@@ -1,0 +1,46 @@
+{
+  "store_name": "recomart_feature_store",
+  "backend": {
+    "type": "sqlite",
+    "db_path": "data/warehouse/recomart.db"
+  },
+  "entities": {
+    "user": {
+      "primary_key": "user_id",
+      "tables": ["features_user"]
+    },
+    "item": {
+      "primary_key": "item_id",
+      "tables": ["features_item"]
+    }
+  },
+  "feature_views": [
+    {
+      "name": "user_features_v1",
+      "entity": "user",
+      "table": "features_user",
+      "version": "v1",
+      "description": "User 7-day aggregates based on interactions.",
+      "features": [
+        {"name": "events_7d", "type": "int", "description": "Number of interactions in last 7 days."},
+        {"name": "purchases_7d", "type": "int", "description": "Number of purchases in last 7 days."},
+        {"name": "avg_price_7d", "type": "float", "description": "Average price in last 7 days."},
+        {"name": "last_event_ts", "type": "string", "description": "Latest interaction timestamp (UTC)."}
+      ]
+    },
+    {
+      "name": "item_features_v1",
+      "entity": "item",
+      "table": "features_item",
+      "version": "v1",
+      "description": "Item 7-day aggregates and popularity score.",
+      "features": [
+        {"name": "views_7d", "type": "int", "description": "Views in last 7 days."},
+        {"name": "carts_7d", "type": "int", "description": "Carts in last 7 days."},
+        {"name": "purchases_7d", "type": "int", "description": "Purchases in last 7 days."},
+        {"name": "popularity_score_7d", "type": "float", "description": "Weighted popularity score in last 7 days."},
+        {"name": "last_event_ts", "type": "string", "description": "Latest event timestamp (UTC)."}
+      ]
+    }
+  ]
+}

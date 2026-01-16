@@ -1,0 +1,4 @@
+[core]
+    remote = localstore
+['remote "localstore"']
+    url = C:\study\2nd Sem\Data Management for Machine Learning\assignment 1\solution\recomart-dvc-storage

@@ -1,0 +1,6 @@
+outs:
+- md5: addec369b04927b40ee7d345a8e36368.dir
+  size: 45056
+  nfiles: 1
+  hash: md5
+  path: warehouse

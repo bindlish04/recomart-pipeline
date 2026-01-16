@@ -1,0 +1,10 @@
+pandas
+pyarrow
+requests
+reportlab
+matplotlib
+mlflow
+scikit-learn
+numpy
+joblib
+prefect
