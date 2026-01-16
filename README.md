@@ -18,6 +18,7 @@ The project demonstrates modern practices in data engineering and MLOps, includi
 
 ## High-Level Architecture
 
+```text
 CSV & API Ingestion
         ↓
 Raw Data Storage (Partitioned)
@@ -34,7 +35,6 @@ Model Training & Evaluation (MLflow)
         ↓
 Pipeline Orchestration (Prefect)
 
----
 
 ## Repository Structure
 
