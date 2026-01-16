@@ -38,38 +38,40 @@ Pipeline Orchestration (Prefect)
 
 ## Repository Structure
 
+```text
 recomart-pipeline/
 ├── src/
-│ ├── ingestion/ # CSV and REST API ingestion
-│ ├── validation/ # Data profiling and quality checks
-│ ├── preparation/ # Data cleaning and EDA
-│ ├── transformation/ # Feature engineering and warehouse logic
-│ ├── feature_store/ # Feature registry and retrieval
-│ ├── modeling/ # Model training and evaluation
-│ ├── orchestration/ # Prefect pipeline orchestration
-│ ├── common/ # Shared utilities (logging, helpers)
-│ └── config.py # Central configuration
+│   ├── ingestion/
+│   ├── validation/
+│   ├── preparation/
+│   ├── transformation/
+│   ├── feature_store/
+│   ├── modeling/
+│   ├── orchestration/
+│   ├── common/
+│   └── config.py
 │
 ├── docs/
-│ ├── storage_structure.md # Raw data lake layout documentation
-│ ├── feature_logic.md # Feature engineering logic
-│ ├── feature_store.md # Feature store design
-│ ├── dvc_workflow.md # Data versioning workflow
-│ ├── lineage.md # Data lineage documentation
-│ └── orchestration.md # Pipeline orchestration details
+│   ├── storage_structure.md
+│   ├── feature_logic.md
+│   ├── feature_store.md
+│   ├── dvc_workflow.md
+│   ├── lineage.md
+│   └── orchestration.md
 │
 ├── data/
-│ ├── raw.dvc # DVC pointer for raw data
-│ ├── validated.dvc # DVC pointer for validated data
-│ ├── prepared.dvc # DVC pointer for prepared data
-│ ├── features.dvc # DVC pointer for feature data
-│ └── warehouse.dvc # DVC pointer for SQLite warehouse
+│   ├── raw.dvc
+│   ├── validated.dvc
+│   ├── prepared.dvc
+│   ├── features.dvc
+│   └── warehouse.dvc
 │
-├── requirements.txt # Python dependencies
-├── README.md # Project documentation
-├── .gitignore # Git ignore rules
-├── .dvc/ # DVC configuration
-└── .dvcignore # DVC ignore rules
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── .dvc/
+└── .dvcignore
+```
 
 **Note:** Actual data files are not committed to Git.  
 All datasets are versioned and managed using **DVC**.
