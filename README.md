@@ -35,8 +35,9 @@ Model Training & Evaluation (MLflow)
         ↓
 Pipeline Orchestration (Prefect)
 
+---
 
-## Repository Structure
+**## Repository Structure**
 
 ```text
 recomart-pipeline/
