@@ -1,19 +1,30 @@
-# recomart-pipeline
-RecoMart – End-to-End ML Data Pipeline
+# RecoMart – End-to-End Data Management & ML Pipeline
 
-This repository implements an end-to-end data management and machine learning pipeline for a recommendation system use case (“RecoMart”).
-It demonstrates best practices in data ingestion, validation, preparation, feature engineering, feature stores, data versioning, model training, experiment tracking, and orchestration.
+This repository implements an end-to-end data management and machine learning pipeline for a recommendation system built for RecoMart, an e-commerce startup.
 
-The project was built as part of the Data Management for Machine Learning assignment and is designed to be reproducible, modular, and production-style.
+The project demonstrates modern practices in data engineering and MLOps, including data ingestion, validation, preparation, feature engineering, feature store design, data versioning, model training, experiment tracking, and orchestration.
 
-**📌High-level Architecture**
-Ingestion (CSV + API)
+---
+
+## Project Objectives
+
+- Build a scalable and maintainable recommendation pipeline
+- Ensure data quality and reproducibility
+- Enable reusable, versioned features for training and inference
+- Track experiments and model performance
+- Automate the full pipeline using orchestration
+
+---
+
+## High-Level Architecture
+
+CSV & API Ingestion
         ↓
-Raw Data Lake (partitioned)
+Raw Data Storage (Partitioned)
         ↓
-Validation & Profiling
+Data Validation & Profiling
         ↓
-Preparation & EDA
+Data Preparation & EDA
         ↓
 Feature Engineering + Warehouse (SQLite)
         ↓
@@ -21,20 +32,22 @@ Feature Store
         ↓
 Model Training & Evaluation (MLflow)
         ↓
-Orchestration (Prefect)
+Pipeline Orchestration (Prefect)
 
-**📁 Repository Structure**
+---
+
+## Repository Structure
+
 recomart-pipeline/
-│
 ├── src/
-│   ├── ingestion/        # CSV & API ingestion
-│   ├── validation/       # Data quality checks + reports
-│   ├── preparation/      # Cleaning & EDA
-│   ├── transformation/   # Feature engineering + warehouse
-│   ├── feature_store/    # Feature registry & retrieval
-│   ├── modeling/         # Model training & evaluation
-│   ├── orchestration/    # Prefect pipeline
-│   ├── common/           # Shared utilities (logging)
+│   ├── ingestion/
+│   ├── validation/
+│   ├── preparation/
+│   ├── transformation/
+│   ├── feature_store/
+│   ├── modeling/
+│   ├── orchestration/
+│   ├── common/
 │   └── config.py
 │
 ├── docs/
@@ -57,80 +70,99 @@ recomart-pipeline/
 ├── .dvc/
 └── .dvcignore
 
-**⚙️ Prerequisites**
-Python 3.9+
-Git
-(Optional) DVC remote access if you want to pull pre-generated data
+Note: Actual data files are not committed to Git. All datasets are versioned and managed using DVC.
 
-**🧪 Setup Instructions
-1️⃣ Clone the repository**
-git clone (https://github.com/bindlish04/recomart-pipeline#)
-cd recomart-pipeline
+---
 
-**2️⃣ Create and activate virtual environment**
-Windows (PowerShell):
-py -m venv .venv
-.\.venv\Scripts\activate
+## Prerequisites
 
-**3️⃣ Install dependencies**
-pip install -r requirements.txt
+- Python 3.9 or higher
+- Git
+- DVC
+- Windows OS (tested environment)
 
-**📦 Data Handling (DVC)
-Option A — Pull existing data (if you have access to DVC remote)**
-dvc pull
-**Option B — Regenerate data locally (no remote access needed)**
-The pipeline will regenerate all data from ingestion onward.
+---
 
-**▶️ Run the Full Pipeline (Recommended)**
-This runs everything end-to-end:
-python -m src.orchestration.prefect_flow
+## Setup Instructions
 
-Pipeline stages:
-CSV & API ingestion
-Data validation + Data Quality PDF
-Data preparation + EDA
-Feature engineering + warehouse materialization
-Model training & evaluation
-MLflow logging
+1. Clone the repository
+   git clone <repository-url>
+   cd recomart-pipeline
 
-**📊 View Experiment Tracking (MLflow)**
-After running training/evaluation:
-mlflow ui
+2. Create and activate virtual environment (Windows)
+   py -m venv .venv
+   .\.venv\Scripts\activate
 
-Open the URL shown (usually http://127.0.0.1:5000) to view:
-Parameters
-Metrics (Precision@K, Recall@K, NDCG@K)
-Model artifacts
+3. Install dependencies
+   pip install -r requirements.txt
 
-**🧠 Feature Store Usage (Example)**
-python -m src.feature_store.demo_retrieve_features
+---
 
-Demonstrates:
-Feature registry
-Online-style feature retrieval for users/items
+## Data Versioning (DVC)
 
-**📈 Model Overview**
-**Model type:** Popularity + Co-occurrence recommender
-**Features:** User & item aggregates (7-day windows)
-**Evaluation metrics:**
-Precision@K
-Recall@K
-NDCG@K
-**Tracking:** MLflow
+If you have access to the DVC remote:
+   dvc pull
 
-This simple model is intentionally chosen to focus on data pipeline quality, not model complexity.
+Otherwise, the pipeline can regenerate all datasets locally.
 
-**🔁 Data Versioning & Lineage**
+---
 
-All pipeline datasets are tracked using DVC
-Git commits reference dataset versions via .dvc files
-Lineage is documented in docs/lineage.md
-Dataset update workflow is documented in docs/dvc_workflow.md
+## Run the End-to-End Pipeline
 
-**📄 Key Documentation**
-Raw storage design: docs/storage_structure.md
-Feature engineering logic: docs/feature_logic.md
-Feature store design: docs/feature_store.md
-DVC workflow: docs/dvc_workflow.md
-Lineage tracking: docs/lineage.md
-Orchestration: docs/orchestration.md
+   python -m src.orchestration.prefect_flow
+
+This runs:
+- CSV & API ingestion
+- Data validation and quality reporting
+- Data preparation and EDA
+- Feature engineering and warehouse creation
+- Feature store materialization
+- Model training and evaluation
+- MLflow experiment logging
+
+---
+
+## Experiment Tracking (MLflow)
+
+Start the MLflow UI:
+   mlflow ui
+
+Open the displayed URL (usually http://127.0.0.1:5000).
+
+---
+
+## Feature Store Demo
+
+   python -m src.feature_store.demo_retrieve_features
+
+---
+
+## Model Summary
+
+- Model type: Popularity + Co-occurrence recommender
+- Features: User and item aggregates (7-day windows)
+- Metrics: Precision@K, Recall@K, NDCG@K
+- Tracking: MLflow
+
+---
+
+## Data Lineage & Reproducibility
+
+- All datasets are versioned with DVC
+- Git commits reference dataset versions via .dvc files
+- Lineage is documented in docs/lineage.md
+- Dataset update workflow is documented in docs/dvc_workflow.md
+
+---
+
+## Notes for Contributors
+
+- Do not commit data folders (handled by DVC)
+- Keep pipeline stages modular
+- Run the Prefect flow for full reproducibility
+
+---
+
+## License / Usage
+
+This project is intended for educational and internal use.
